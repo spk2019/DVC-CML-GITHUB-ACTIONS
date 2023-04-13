@@ -3,8 +3,6 @@ stages:
     cmd: python train.py
     deps:
     - train.py
-    outs:
-    - confusion_matrix.png
     
     metrics:
     - metrics.txt:
