@@ -3,11 +3,9 @@ stages:
     cmd: python train.py
     deps:
     - train.py
-    
     metrics:
     - metrics.txt:
         cache: false
-    
     plots:
     - classes.csv:
         cache: false
