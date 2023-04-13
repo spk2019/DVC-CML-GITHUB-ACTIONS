@@ -31,7 +31,7 @@ jobs:
           # Publish confusion matrix diff
           echo "## Confusion matrix plot " >> report.md
           dvc plots diff --target classes.csv --template confusion -x actual -y predicted --show-vega main > vega.json
-          vl2png vega.json -s 1.3 > plot.png
+          vl2png vega.json > plot.png
           echo '![](./plot.png)' >> report.md
 
           cml comment create --pr --publish report.md
