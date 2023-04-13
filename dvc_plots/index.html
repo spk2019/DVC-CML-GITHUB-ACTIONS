@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>DVC Plot</title>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.18.2"></script>
+    
+    <style>
+        table {
+            border-spacing: 15px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id = "classes_csv">
+        <script type = "text/javascript">
+            var spec = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "values": [
+    {
+        "actual": "0",
+        "predicted": "0",
+        "rev": "workspace"
+    },
+    {
+        "actual": "0",
+        "predicted": "0",
+        "rev": "workspace"
+    },
+    {
+        "actual": "2",
+        "predicted": "2",
+        "rev": "workspace"
+    },
+    {
+        "actual": "0",
+        "predicted": "0",
+        "rev": "workspace"
+    },
+    {
+        "actual": "1",
+        "predicted": "1",
+        "rev": "workspace"
+    },
+    {
+        "actual": "0",
+        "predicted": "0",
+        "rev": "workspace"
+    },
+    {
+        "actual": "1",
+        "predicted": "1",
+        "rev": "workspace"
+    },
+    {
+        "actual": "2",
+        "predicted": "2",
+        "rev": "workspace"
+    },
+    {
+        "actual": "1",
+        "predicted": "1",
+        "rev": "workspace"
+    },
+    {
+        "actual": "2",
+        "predicted": "2",
+        "rev": "workspace"
+    },
+    {
+        "actual": "0",
+        "predicted": "1",
+        "rev": "workspace"
+    },
+    {
+        "actual": "2",
+        "predicted": "0",
+        "rev": "workspace"
+    },
+    {
+        "actual": "0",
+        "predicted": "0",
+        "rev": "workspace"
+    },
+    {
+        "actual": "1",
+        "predicted": "1",
+        "rev": "workspace"
+    },
+    {
+        "actual": "0",
+        "predicted": "0",
+        "rev": "workspace"
+    },
+    {
+        "actual": "1",
+        "predicted": "1",
+        "rev": "workspace"
+    },
+    {
+        "actual": "1",
+        "predicted": "1",
+        "rev": "workspace"
+    },
+    {
+        "actual": "1",
+        "predicted": "1",
+        "rev": "workspace"
+    },
+    {
+        "actual": "0",
+        "predicted": "0",
+        "rev": "HEAD"
+    },
+    {
+        "actual": "0",
+        "predicted": "0",
+        "rev": "HEAD"
+    },
+    {
+        "actual": "2",
+        "predicted": "2",
+        "rev": "HEAD"
+    },
+    {
+        "actual": "0",
+        "predicted": "0",
+        "rev": "HEAD"
+    },
+    {
+        "actual": "1",
+        "predicted": "1",
+        "rev": "HEAD"
+    },
+    {
+        "actual": "0",
+        "predicted": "0",
+        "rev": "HEAD"
+    },
+    {
+        "actual": "1",
+        "predicted": "1",
+        "rev": "HEAD"
+    },
+    {
+        "actual": "2",
+        "predicted": "2",
+        "rev": "HEAD"
+    },
+    {
+        "actual": "1",
+        "predicted": "1",
+        "rev": "HEAD"
+    },
+    {
+        "actual": "2",
+        "predicted": "2",
+        "rev": "HEAD"
+    },
+    {
+        "actual": "0",
+        "predicted": "1",
+        "rev": "HEAD"
+    },
+    {
+        "actual": "2",
+        "predicted": "0",
+        "rev": "HEAD"
+    },
+    {
+        "actual": "0",
+        "predicted": "0",
+        "rev": "HEAD"
+    },
+    {
+        "actual": "1",
+        "predicted": "1",
+        "rev": "HEAD"
+    },
+    {
+        "actual": "0",
+        "predicted": "0",
+        "rev": "HEAD"
+    },
+    {
+        "actual": "1",
+        "predicted": "1",
+        "rev": "HEAD"
+    },
+    {
+        "actual": "1",
+        "predicted": "1",
+        "rev": "HEAD"
+    },
+    {
+        "actual": "1",
+        "predicted": "1",
+        "rev": "HEAD"
+    }
+]
+    },
+    "title": "classes.csv",
+    "facet": {
+        "field": "rev",
+        "type": "nominal"
+    },
+    "spec": {
+        "transform": [
+            {
+                "aggregate": [
+                    {
+                        "op": "count",
+                        "as": "xy_count"
+                    }
+                ],
+                "groupby": [
+                    "predicted",
+                    "predicted"
+                ]
+            },
+            {
+                "impute": "xy_count",
+                "groupby": [
+                    "rev",
+                    "predicted"
+                ],
+                "key": "predicted",
+                "value": 0
+            },
+            {
+                "impute": "xy_count",
+                "groupby": [
+                    "rev",
+                    "predicted"
+                ],
+                "key": "predicted",
+                "value": 0
+            },
+            {
+                "joinaggregate": [
+                    {
+                        "op": "max",
+                        "field": "xy_count",
+                        "as": "max_count"
+                    }
+                ],
+                "groupby": []
+            },
+            {
+                "calculate": "datum.xy_count / datum.max_count",
+                "as": "percent_of_max"
+            }
+        ],
+        "encoding": {
+            "x": {
+                "field": "predicted",
+                "type": "nominal",
+                "sort": "ascending",
+                "title": "predicted"
+            },
+            "y": {
+                "field": "predicted",
+                "type": "nominal",
+                "sort": "ascending",
+                "title": "predicted"
+            }
+        },
+        "layer": [
+            {
+                "mark": "rect",
+                "width": 300,
+                "height": 300,
+                "encoding": {
+                    "color": {
+                        "field": "xy_count",
+                        "type": "quantitative",
+                        "title": "",
+                        "scale": {
+                            "domainMin": 0,
+                            "nice": true
+                        }
+                    }
+                }
+            },
+            {
+                "selection": {
+                    "label": {
+                        "type": "single",
+                        "on": "mouseover",
+                        "encodings": [
+                            "x",
+                            "y"
+                        ],
+                        "empty": "none",
+                        "clear": "mouseout"
+                    }
+                },
+                "mark": "rect",
+                "encoding": {
+                    "tooltip": [
+                        {
+                            "field": "predicted",
+                            "type": "nominal"
+                        },
+                        {
+                            "field": "predicted",
+                            "type": "nominal"
+                        }
+                    ],
+                    "opacity": {
+                        "condition": {
+                            "selection": "label",
+                            "value": 1
+                        },
+                        "value": 0
+                    }
+                }
+            },
+            {
+                "transform": [
+                    {
+                        "filter": {
+                            "selection": "label"
+                        }
+                    }
+                ],
+                "layer": [
+                    {
+                        "mark": {
+                            "type": "rect",
+                            "color": "lightpink"
+                        }
+                    }
+                ]
+            },
+            {
+                "mark": "text",
+                "encoding": {
+                    "text": {
+                        "field": "xy_count",
+                        "type": "quantitative"
+                    },
+                    "color": {
+                        "condition": {
+                            "test": "datum.percent_of_max > 0.5",
+                            "value": "white"
+                        },
+                        "value": "black"
+                    }
+                }
+            }
+        ]
+    }
+}
+;
+            vegaEmbed('#classes_csv', spec);
+        </script>
+    </div>
+    
+</body>
+</html>
