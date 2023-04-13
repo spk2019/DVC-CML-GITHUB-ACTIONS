@@ -24,7 +24,7 @@ x_train, x_test, y_train, y_test = train_test_split(
 
 
 
-model = DecisionTreeClassifier().fit(x_train, y_train)
+model =LogisticRegression(random_state=0,solver="liblinear").fit(x_train, y_train)
 y_pred = model.predict(x_test)
 acc = model.score(x_test, y_test)
 f1 = f1_score(y_test,y_pred,average="macro")
