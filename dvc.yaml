@@ -12,6 +12,4 @@ stages:
     
     plots:
     - classes.csv:
-        template: confusion
-        x: actual
-        y: predicted
+        cache: false
